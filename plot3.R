@@ -5,6 +5,9 @@
 # Use data.table instead of data.frame
 library(data.table)
 
+# Fixes locale so that the week days appear in english
+Sys.setlocale(category = "LC_ALL", locale = "English_United States.1252")
+
 # read the whole data on file
 electric <- fread("../household_power_consumption.txt", na.strings='?')
 
@@ -27,5 +30,5 @@ points(el$Sub_metering_3 ~ el$dateTime, col='blue', type='l')
 legend("topright", lty=1, lwd=2, col=c('black', 'red', 'blue'), legend=names(el)[7:9])
 
 # Copy the plot to the PNG file device
-dev.copy(png, file="plot3.png")
+dev.copy(png, file="plot3.png", width=480, height=480, units='px')
 dev.off()
