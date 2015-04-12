@@ -14,10 +14,10 @@ el <- electric[Date=='1/2/2007' | Date=='2/2/2007']
 # coerce the column 'Global_active_power' from char to numeric in order to plot frequencies
 el[, Global_active_power := as.numeric(Global_active_power)]
 
-# histogram (added some further elements to make the plot more informative)
+# histogram 
 hist(el$Global_active_power, col = "red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
-rug(el$Global_active_power)
-abline(v = median(el$Global_active_power), col = 'magenta', lwd=3, lty=2)
+#rug(el$Global_active_power)
+#abline(v = median(el$Global_active_power), col = 'magenta', lwd=3, lty=2)
 
 # Copy the plot to the PNG file device
 dev.copy(png, file="plot1.png", width=480, height=480, units='px')
