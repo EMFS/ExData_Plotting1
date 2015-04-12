@@ -5,6 +5,9 @@
 # Use data.table instead of data.frame
 library(data.table)
 
+# Fixes locale so that the week days appear in english
+Sys.setlocale(category = "LC_ALL", locale = "English_United States.1252")
+
 # read the whole data on file
 electric <- fread("../household_power_consumption.txt", na.strings='?')
 
@@ -35,9 +38,6 @@ par(mfrow=c(2,2))
 # First scatter plot - Global Active Power: points are linked by lines (type='l')
 plot(el$Global_active_power ~ el$dateTime, type='l', ylab='Global Active Power', xlab='')
 
-# First scatter plot - Global Active Power: points are linked by lines (type='l')
-plot(el$Global_active_power ~ el$dateTime, type='l', ylab='Global Active Power', xlab='')
-
 # Second scatter plot - Voltage: points are linked by lines (type='l')
 plot(el$Voltage ~ el$dateTime, type='l', xlab='datetime', ylab='Voltage')
 
@@ -51,5 +51,5 @@ legend("topright", lty=1, lwd=2, col=c('black', 'red', 'blue'), legend=names(el)
 plot(el$Global_reactive_power ~ el$dateTime, type='l', ylab='Global_reactive_power', xlab='datetime')
 
 # Copy the plot to the PNG file device
-dev.copy(png, file="plot4.png")
+dev.copy(png, file="plot4.png", width=480, height=480, units='px')
 dev.off()
